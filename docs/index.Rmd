@@ -13,7 +13,7 @@ output:
       highlightLines: true
       countIncrementalSlides: true
 ---
-background-image: url("capa.png")
+background-image: url("capa_julho.png")
 background-size: contain
 
 
@@ -446,33 +446,33 @@ tabela_expor_comex <- read.csv2("tabela_expor_comex.csv")
 
 
 tabela_dolar <- data.frame(Período = c("Mês", "12 meses"),
-                           Variação = c("-7,45%","-7,95%"))
+                           Variação = c("-4,90%","-3,16%"))
 
 
 tabela_comex_1 <- data.frame(Período = c("Mês", "12 meses"),
-                           `Variação (exportação)` = c("+3,32%","+9,66%"),
-                           `Variação (importação)` = c("+53,82%","+65,30%"))
+                           `Variação (exportação)` = c("+7,10%","+60,74%"),
+                           `Variação (importação)` = c("+1,11%","+62,56%"))
 
 tabela_comex_2 <- data.frame(Período = c("Mês", "12 meses"),
-                           `Variação (exportação)` = c("+19,21%","+1,14%"),
-                           `Variação (importação)` = c("+75,39%","+55,95%"))
+                           `Variação (exportação)` = c("+-2,29%","+76,95%"),
+                           `Variação (importação)` = c("+6,60%","+60,68%"))
 
 tabela_comex_3 <- data.frame(Período = c("Mês", "12 meses"),
-                           `Variação (exportação)` = c("+1,03%","+9,79%"),
+                           `Variação (exportação)` = c("+9,43%","+9,79%"),
                            `Variação (importação)` = c("+37,12%","+46,84%"))
 
 tabela_comex_4 <- data.frame(Período = c("Mês", "12 meses"),
-                           `Variação (exportação)` = c("-2,56%","+25,90%"),
-                           `Variação (importação)` = c("+41,76%","+49,83%"))
+                           `Variação (exportação)` = c("15,53%","-2,30%"),
+                           `Variação (importação)` = c("51,76%","+57,51%"))
 
 tabela_comex_5 <- data.frame(Período = c("Mês", "12 meses"),
-                           `Variação (exportação)` = c("+42,76%","-1,72%"),
-                           `Variação (importação)` = c("+185,71%","+102,57%"))
+                           `Variação (exportação)` = c("-5,89%","20,05%"),
+                           `Variação (importação)` = c("+70,67%","+91,84%"))
 
 
 tabela_aviacao <- data.frame(Período = c("Mês","12 meses"), 
-                             `Variação (saídas)` = c("+12,74%","+33,20%"),
-                             `Variação (chegadas)` = c("+331,03%","+241,52%"))
+                             `Variação (saídas)` = c("+18,34%","+30,06%"),
+                             `Variação (chegadas)` = c("+268,61%","+245,31%"))
 
 
 ```
@@ -490,7 +490,7 @@ tabela_aviacao <- data.frame(Período = c("Mês","12 meses"),
  ggplot()+
   geom_line(data = tc_12, aes(y=`23079`, x=date), color="#008BBC", size=1)+
   geom_hline(yintercept = 0, color="black", lty=2)+
-  scale_x_date(date_labels = "%b\n%Y", breaks = "12 month", expand = c(0.03,0.03)) +
+  scale_x_date(date_labels = "%b\n%Y", breaks = "12 month", expand = c(0.025,0.05)) +
   scale_y_continuous(limits=c(-5, 2.5),
                      breaks=seq(-5,2.5, 0.5))+
   labs(title = "Transacões Correntes", subtitle = "Acumulado em 12 meses",
@@ -533,8 +533,8 @@ ggplot()+
   scale_color_manual(values=c("dodgerblue4","deepskyblue3"),name = "")+
   labs(x="",y="R$/U$S", title = "Câmbio Observado vs Câmbio Ajustado pela PPP", 
         caption = "Fonte: BCB,FRED | Elaboração: Arazul Research")+
-  scale_x_date(date_labels = "%b\n%Y", breaks = "14 month",
-               limits = as.Date(c("1999-01-01","2021-05-01")))+
+  scale_x_date(date_labels = "%b\n%Y", breaks = "14 month", expand = c(0.03,0.03),
+               limits = as.Date(c("1999-01-01","2021-06-01")))+
   scale_y_continuous(limits=c(1, 6),
                      breaks=seq(1,6))+
  theme_minimal() +
@@ -683,7 +683,7 @@ p9 <- ggplot(Cambio_contratado_comercial, aes(x = date, y = value, fill = Color)
         plot.caption = element_text(size = 8),
         axis.text.y = element_text(face="bold", color="#000000",size=8),
         axis.text.x = element_text(face="bold", color="#000000",size=8)) +
-  scale_x_date(date_labels = "%b\n%Y", breaks = "3 month") +
+  scale_x_date(date_labels = "%b\n%Y", breaks = "2 month", expand = c(0,4)) +
   theme_xaringan(text_font_size = 10)
 
 
@@ -706,7 +706,7 @@ p10 <-  ggplot(Cambio_contratado_financeiro, aes(x = date, y = value, fill = Col
         plot.caption = element_text(size = 8),
         axis.text.y = element_text(face="bold", color="#000000",size=8),
         axis.text.x = element_text(face="bold", color="#000000",size=8)) +
-  scale_x_date(date_labels = "%b\n%Y", breaks = "3 month") +
+  scale_x_date(date_labels = "%b\n%Y", breaks = "2 month", expand = c(0,4)) +
   theme_xaringan(text_font_size = 10)
   
 
@@ -738,8 +738,8 @@ grid.arrange(p9, p10, ncol = 2)
 ggplot(opcoes_dolar, aes(x= Date, y = valores, colour = meses)) +
   geom_line(size=1) +
   scale_x_date(date_labels = "%b\n%Y", breaks = "2 month") +
-   scale_y_continuous(limits=c(5000, 6000),
-                      breaks=seq(5000,6000, 300))+
+   scale_y_continuous(limits=c(4600, 6000),
+                      breaks=seq(4600,6000, 300))+
   labs(title = "Contratos Futuros de Dólar",
        caption = "Fonte: Bloomberg | Elaboração: Arazul Research",
        colour = "Vencimento: ",
@@ -795,7 +795,7 @@ ggplot(comex) +
        title = "Exportações e Importações do Brasil Totais (US$ FOB)",
        caption = "Fonte: IPEA | Elaboração: Arazul Research")+
   scale_x_date(date_labels = "%b\n%Y", breaks = "1 months", labels = date_format("%b\n%y"), 
-               limits = as.Date(c("2020-01-01","2021-05-10"))) +
+               limits = as.Date(c("2020-01-01","2021-06-10"))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         axis.title.y = element_text(size=8),
@@ -849,7 +849,7 @@ ggplot(comex) +
        title = "Exportações e Importações com os EUA (US$ FOB)",
        caption = "Fonte: IPEA | Elaboração: Arazul Research") +
   scale_x_date(date_labels = "%b\n%Y", breaks = "1 months", labels = date_format("%b\n%y"), 
-               limits = as.Date(c("2020-01-01","2021-05-10"))) +
+               limits = as.Date(c("2020-01-01","2021-06-10"))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         axis.title.y = element_text(size=8),
@@ -901,7 +901,7 @@ ggplot(comex) +
        title = "Exportações e Importações com a Europa (US$ FOB)",
        caption = "Fonte: IPEA | Elaboração: Arazul Research") +
   scale_x_date(date_labels = "%b\n%Y", breaks = "1 months", labels = date_format("%b\n%y"), 
-               limits = as.Date(c("2020-01-01","2021-05-10"))) +
+               limits = as.Date(c("2020-01-01","2021-06-10"))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         axis.title.y = element_text(size=8),
@@ -953,7 +953,7 @@ ggplot(comex) +
        title = "Exportações e Importações com a China (US$ FOB)",
        caption = "Fonte: IPEA | Elaboração: Arazul Research") +
   scale_x_date(date_labels = "%b\n%Y", breaks = "1 months", labels = date_format("%b\n%y"), 
-               limits = as.Date(c("2020-01-01","2021-05-10"))) +
+               limits = as.Date(c("2020-01-01","2021-06-10"))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         axis.title.y = element_text(size=8),
@@ -1007,7 +1007,7 @@ ggplot(comex) +
   scale_x_date(date_labels = "%b\n%Y",
                breaks = "1 months",
                labels = date_format("%b\n%y"), 
-               limits = as.Date(c("2020-01-01","2021-05-10"))) +
+               limits = as.Date(c("2020-01-01","2021-06-10"))) +
   theme_minimal() +
   theme(legend.position = "bottom",
         axis.title.y = element_text(size=8),
@@ -1060,7 +1060,7 @@ exp_prod_graph <- ggplot(exportacao_produtos_2021, aes(x = total_bilhoes,  y = r
   scale_x_continuous(labels = scales::dollar_format(prefix = "US$",big.mark = ".", decimal.mark = ","),
                      breaks = seq(0,10000,2000),
                      limits = c(0,10000)) + 
-  labs(title = "5 produtos mais exportados no Brasil\n em Maio de 2021 (em milhões de dólares)", y = "", x="US$ (milhões)",
+  labs(title = "5 produtos mais exportados no Brasil\n em Junho de 2021 (em milhões de dólares)", y = "", x="US$ (milhões)",
        caption = paste("Fonte: Comex | Elaboração: Arazul Research")) +
   theme_minimal() +
   theme(legend.position = "none",
@@ -1084,7 +1084,7 @@ imp_prod_graph <- ggplot(importacao_produtos_2021, aes(x = total_bilhoes,  y = r
   scale_x_continuous(labels = scales::dollar_format(prefix = "US$",big.mark = ".", decimal.mark = ","),
                      breaks = seq(0,1250,350),
                      limits = c(0,1250)) +
-  labs(title = "5 produtos mais importados no Brasil\n em Maio de 2021 (em milhões de dólares)", y = "", x="US$ (milhões)",
+  labs(title = "5 produtos mais importados no Brasil\n em Junho de 2021 (em milhões de dólares)", y = "", x="US$ (milhões)",
        caption = paste("Fonte: Comex | Elaboração: Arazul Research")) +
   theme_minimal() +
   theme(legend.position = "bottom",
@@ -1120,7 +1120,7 @@ knitr::kable(head(tabela_expor_comex),
              format = 'html',
              align = "c",
              col.names = c("Produto",
-                           "Valor exportado em Maio/21 (em milhões US$)",
+                           "Valor exportado em Junho/21 (em milhões US$)",
                            "Variação (12 meses)",
                            "Variação (1 mês)"),
              caption = "Referência: Junho/2021")
@@ -1148,7 +1148,7 @@ knitr::kable(head(tabela_impor_comex),
              format = 'html',
              align = "c",
              col.names = c("Produto",
-                           "Valor importado em Maio/21 (em milhões US$)",
+                           "Valor importado em Junho/21 (em milhões US$)",
                            "Variação (12 meses)",
                            "Variação (1 mês)"),
              caption = "Referência: Junho/2021")
